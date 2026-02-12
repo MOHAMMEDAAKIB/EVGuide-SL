@@ -43,8 +43,8 @@ export default function HeroSection({
 
       {/* Content - Above video */}
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        {/* Header with Logo and Theme Toggle */}
-        <div className="flex justify-between items-center mb-12">
+        {/* Header with Logo */}
+        <div className="flex  items-center mb-12">
           <div className="flex items-center gap-3 text-2xl font-bold drop-shadow-lg">
             <Image 
               src="/images/ev-logo.png" 
@@ -55,12 +55,6 @@ export default function HeroSection({
             />
             <span>EVGuide SL</span>
           </div>
-          <button 
-            className="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors text-sm font-medium border border-white/20"
-            aria-label="Toggle theme"
-          >
-            Switch | Dark
-          </button>
         </div>
 
         {/* Hero Content */}
