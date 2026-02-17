@@ -58,6 +58,29 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGci...your_actual_key_here
 
 3. Save the file
 
+### Step 5: (Optional) Setup Google Maps API for Route Planner (5 minutes)
+
+The Route Planner feature requires a Google Maps API key. Skip this if you don't need the route planner yet.
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project or select existing one
+3. Enable the following APIs:
+   - **Maps JavaScript API**
+   - **Places API** (for location autocomplete)
+4. Go to **Credentials** → **Create Credentials** → **API Key**
+5. Copy the API key
+6. **Restrict your key** (Security → API restrictions):
+   - Select "Restrict key"
+   - Check only: Maps JavaScript API, Places API
+   - Add website restriction: `localhost:3000/*` for development
+7. Add to `.env.local`:
+
+```env
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIza...your_actual_key_here
+```
+
+**Note**: Google Maps has a $200/month free tier (sufficient for development).
+
 ---
 
 ## 🎯 Run Your App!

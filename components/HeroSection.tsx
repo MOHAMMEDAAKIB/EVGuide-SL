@@ -99,7 +99,7 @@ export default function HeroSection({
 
             {/* Secondary CTA - Calculate Savings */}
             <a 
-              href="/calculator"
+              href="tools/tco-calculator"
               className="group relative px-10 py-5 rounded-2xl font-bold text-lg text-white
                          overflow-hidden transition-all duration-300
                          bg-linear-to-r from-green-500/40/10 to-emerald-600/40/10

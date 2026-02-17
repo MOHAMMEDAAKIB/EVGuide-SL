@@ -11,6 +11,11 @@ export interface Database {
         Insert: Omit<ChargingStation, 'id' | 'created_at'>;
         Update: Partial<Omit<ChargingStation, 'id' | 'created_at'>>;
       };
+      fuel_prices: {
+        Row: FuelPrice;
+        Insert: Omit<FuelPrice, 'id' | 'created_at'>;
+        Update: Partial<Omit<FuelPrice, 'id' | 'created_at'>>;
+      };
     };
   };
 }
@@ -36,6 +41,7 @@ export interface Vehicle {
   drive_type: string; // FWD, RWD, AWD
   tax_bracket: string;
   image_url: string | null;
+  image_urls?: string[]; // Optional array of images for detail gallery
   features: string[] | null; // JSON array of features
   created_at: string;
   updated_at: string | null;
@@ -55,6 +61,16 @@ export interface ChargingStation {
   is_public: boolean;
   cost_per_kwh: number | null;
   amenities: string[] | null; // ['parking', 'restroom', 'cafe']
+  created_at: string;
+  updated_at: string | null;
+}
+
+export interface FuelPrice {
+  id: string;
+  fuel_type: 'petrol' | 'diesel';
+  price_lkr: number; // Price per liter
+  effective_date: string;
+  is_active: boolean;
   created_at: string;
   updated_at: string | null;
 }

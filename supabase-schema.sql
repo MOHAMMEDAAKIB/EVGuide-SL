@@ -87,5 +87,34 @@ INSERT INTO public.charging_stations (name, operator, address, latitude, longitu
 ('ChargeNET - Kandy City Centre', 'ChargeNET', 'Dalada Veediya, Kandy', 7.2933, 80.6351, '["CCS2", "CHAdeMO"]', 50, 'DC', 'available', true, 45, '["parking", "shopping", "restroom"]'),
 ('Tesla Supercharger - Colombo', 'Tesla', 'Bauddhaloka Mawatha, Colombo 04', 6.8978, 79.8591, '["Tesla Supercharger"]', 150, 'DC', 'available', false, null, '["parking", "wifi"]');
 
+-- Fuel Prices Table (for TCO Calculator)
+CREATE TABLE IF NOT EXISTS public.fuel_prices (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    fuel_type VARCHAR(20) NOT NULL CHECK (fuel_type IN ('petrol', 'diesel')),
+    price_lkr DECIMAL(6,2) NOT NULL, -- Price per liter in LKR
+    effective_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    is_active BOOLEAN NOT NULL DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE
+);
+
+-- Index for fuel prices
+CREATE INDEX idx_fuel_prices_active ON public.fuel_prices(fuel_type, is_active);
+CREATE INDEX idx_fuel_prices_date ON public.fuel_prices(effective_date DESC);
+
+-- Enable RLS for fuel prices
+ALTER TABLE public.fuel_prices ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Allow public read access to fuel prices
+CREATE POLICY "Allow public read access to fuel prices"
+    ON public.fuel_prices FOR SELECT
+    USING (true);
+
+-- Insert Current Fuel Prices (as of Feb 2026)
+INSERT INTO public.fuel_prices (fuel_type, price_lkr, effective_date, is_active) VALUES
+('petrol', 350.00, '2026-02-01', true),
+('diesel', 320.00, '2026-02-01', true);
+
 COMMENT ON TABLE public.vehicles IS 'Electric vehicles available in Sri Lanka with localized specifications';
 COMMENT ON TABLE public.charging_stations IS 'EV charging infrastructure across Sri Lanka';
+COMMENT ON TABLE public.fuel_prices IS 'Current fuel prices in Sri Lanka for TCO calculations';

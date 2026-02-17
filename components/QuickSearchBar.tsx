@@ -15,7 +15,7 @@ interface QuickSearchBarProps {
 export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) {
   const storageKey = 'quickSearchOpenV2';
   const [searchTerm, setSearchTerm] = useState('');
-  const [priceRange, setPriceRange] = useState(20000000); // 20M LKR default max
+  const [priceRange, setPriceRange] = useState(20000000); 
   const [minRange, setMinRange] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -25,6 +25,8 @@ export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) 
     const stored = window.localStorage.getItem(storageKey);
     if (stored === 'true' || stored === 'false') {
       setIsOpen(stored === 'true');
+    } else {
+      setIsOpen(true);
     }
   }, []);
 
