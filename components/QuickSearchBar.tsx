@@ -176,7 +176,7 @@ export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) 
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              aria-expanded={isOpen}
+              aria-expanded={isOpen ? 'true' : 'false'}
               aria-controls="quick-search-panel"
               aria-label={isOpen ? 'Collapse filters' : 'Expand filters'}
               className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 dark:bg-slate-900/60 dark:text-slate-200 dark:hover:bg-slate-800"

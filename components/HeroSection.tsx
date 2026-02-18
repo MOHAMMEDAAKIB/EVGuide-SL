@@ -43,19 +43,7 @@ export default function HeroSection({
 
       {/* Content - Above video */}
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        {/* Header with Logo */}
-        <div className="flex  items-center mb-12">
-          <div className="flex items-center gap-3 text-2xl font-bold drop-shadow-lg">
-            <Image 
-              src="/images/ev-logo.png" 
-              alt="EVGuide SL Logo" 
-              width={48} 
-              height={48}
-              className="text-white drop-shadow-lg"
-            />
-            <span>EVGuide SL</span>
-          </div>
-        </div>
+        
 
         {/* Hero Content */}
         <div className="text-center max-w-4xl mx-auto">

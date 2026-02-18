@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ThemeToggle from "@/components/ThemeToggle";
+import Navbar from "@/components/Navbar";
+import MobileNav from "@/components/MobileNav";
+import { ToastProvider } from "@/components/Toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,12 +54,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        
-        {/* Fixed Theme Toggle - Bottom Right on All Pages */}
-        <div className="fixed bottom-6 right-6 z-9999">
-          <ThemeToggle />
-        </div>
+        <ToastProvider>
+          {/* Desktop Navigation */}
+          <Navbar />
+          
+          {/* Main Content - with top padding for fixed navbar */}
+          <main className="min-h-screen pt-16">
+            {children}
+          </main>
+          
+          {/* Mobile Bottom Navigation */}
+          <MobileNav />
+        </ToastProvider>
       </body>
     </html>
   );
