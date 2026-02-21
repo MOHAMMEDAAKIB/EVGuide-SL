@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Vehicle, RouteFormInputs, SLLocation } from '@/types';
 import { SRI_LANKAN_LOCATIONS, searchLocations } from '@/lib/locations';
-import { Zap, Loader2 } from 'lucide-react';
+import {Map, Zap, Loader2, MapPin } from 'lucide-react';
 
 interface RoutePlannerFormProps {
   vehicles: Vehicle[];
@@ -107,7 +107,7 @@ export default function RoutePlannerForm({
       {/* Journey Section */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>🗺️</span> Your Journey
+          <span><Map className="w-5 h-5"/></span> Your Journey
         </h3>
 
         <div className="space-y-4">
@@ -128,7 +128,7 @@ export default function RoutePlannerForm({
                 className="w-full rounded-xl border border-slate-200/80 bg-white px-4 py-3 pr-10 text-slate-900 shadow-sm outline-none transition focus:border-emerald-500/60 focus:ring-4 focus:ring-emerald-500/10 dark:border-slate-700/70 dark:bg-slate-800 dark:text-slate-100"
                 aria-label="Origin location"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-lg">📍</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-lg"><MapPin className="w-5 h-5 text-red-600" /></span>
             </div>
 
             {/* Origin Dropdown */}
@@ -182,7 +182,9 @@ export default function RoutePlannerForm({
                 className="w-full rounded-xl border border-slate-200/80 bg-white px-4 py-3 pr-10 text-slate-900 shadow-sm outline-none transition focus:border-emerald-500/60 focus:ring-4 focus:ring-emerald-500/10 dark:border-slate-700/70 dark:bg-slate-800 dark:text-slate-100"
                 aria-label="Destination location"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-lg">📍</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-lg">
+                <MapPin className="w-5 h-5 text-red-600" />
+              </span>
             </div>
 
             {/* Destination Dropdown */}
@@ -224,7 +226,7 @@ export default function RoutePlannerForm({
       {/* Vehicle Selection */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>⚡</span> Select Vehicle
+          <span><Zap className="w-5 h-5 text-amber-400" /></span> Select Vehicle
         </h3>
 
         <div className="space-y-4">

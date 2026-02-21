@@ -3,7 +3,7 @@
 import { Vehicle, RangeAnalysis, RouteData, StationWithDistance } from '@/types';
 import { Map, Marker, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
 import { useState } from 'react';
-import { CheckCircle, XCircle } from 'lucide-react';
+import { CheckCircle, XCircle, Zap } from 'lucide-react';
 
 interface RouteResultsProps {
   vehicle: Vehicle;
@@ -162,7 +162,7 @@ export default function RouteResults({
                 onClick={() => setSelectedStation(station.id)}
               >
                 <div className="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg cursor-pointer shadow-lg hover:scale-110 transition">
-                  ⚡
+                  <Zap className="w-4 h-4 text-amber-400"/>
                 </div>
 
                 {selectedStation === station.id && (
@@ -198,7 +198,7 @@ export default function RouteResults({
       {nearbyStations.length > 0 && (
         <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-            <span>⚡</span> Charging Stations Along Route ({nearbyStations.length})
+            <span><Zap className="w-5 h-5 text-amber-400"/></span> Charging Stations Along Route ({nearbyStations.length})
           </h3>
 
           <div className="space-y-3">

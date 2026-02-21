@@ -14,7 +14,7 @@ import {
 import RoutePlannerForm from '@/components/route-planner/RoutePlannerForm';
 import RouteResults from '@/components/route-planner/RouteResults';
 import GoogleMapsProvider from '@/components/route-planner/GoogleMapsProvider';
-import { Link2, Check } from 'lucide-react';
+import { Link2, Check, Map } from 'lucide-react';
 
 interface RoutePlannerClientProps {
   vehicles: Vehicle[];
@@ -206,7 +206,7 @@ export default function RoutePlannerClient({
       {/* Empty State */}
       {!routeData && !isCalculating && (
         <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center dark:border-slate-700 dark:bg-slate-900">
-          <div className="text-6xl mb-4">🗺️</div>
+          <div className="text-6xl mb-4 "><Map className="w-16 h-16 text-blue-700 ml-auto mr-auto" /></div>
           <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
             Plan Your EV Journey
           </h3>
