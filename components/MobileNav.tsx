@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { Home, Car, GitCompare, Map, Sparkles, DollarSignIcon, HelpCircle, InfoIcon } from 'lucide-react';
 
 export default function MobileNav() {
   const pathname = usePathname();
@@ -11,10 +12,10 @@ export default function MobileNav() {
   const isActive = (path: string) => pathname === path || pathname?.startsWith(path);
 
   const navItems = [
-    { href: '/', icon: '🏠', label: 'Home' },
-    { href: '/vehicles', icon: '🚗', label: 'Browse' },
-    { href: '/compare', icon: '🔀', label: 'Compare' },
-    { href: '/map', icon: '🗺️', label: 'Map' },
+    { href: '/', icon: <Home className="w-6 h-6" />, label: 'Home' },
+    { href: '/vehicles', icon: <Car className="w-6 h-6" />, label: 'Browse' },
+    { href: '/compare', icon: <GitCompare className="w-6 h-6" />, label: 'Compare' },
+    { href: '/map', icon: <Map className="w-6 h-6" />, label: 'Map' },
   ];
 
   return (
@@ -32,7 +33,7 @@ export default function MobileNav() {
                   : 'text-gray-600 dark:text-gray-400'
               }`}
             >
-              <span className="text-2xl mb-1">{item.icon}</span>
+              <div className="mb-1">{item.icon}</div>
               <span className="text-xs font-medium">{item.label}</span>
             </Link>
           ))}
@@ -42,7 +43,7 @@ export default function MobileNav() {
             onClick={() => setShowMore(!showMore)}
             className="flex flex-col items-center justify-center flex-1 h-full text-gray-600 dark:text-gray-400"
           >
-            <span className="text-2xl mb-1">✨</span>
+            <Sparkles className="w-6 h-6 mb-1" />
             <span className="text-xs font-medium">More</span>
           </button>
         </div>
@@ -80,7 +81,7 @@ export default function MobileNav() {
                   onClick={() => setShowMore(false)}
                   className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <span className="text-3xl">💰</span>
+                  <span className="text-3xl"><DollarSignIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" /></span>
                   <div>
                     <div className="font-medium text-gray-900 dark:text-white">TCO Calculator</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">Calculate ownership costs</div>
@@ -92,7 +93,7 @@ export default function MobileNav() {
                   onClick={() => setShowMore(false)}
                   className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <span className="text-3xl">🗺️</span>
+                  <span className="text-3xl"><Map className="w-6 h-6 text-gray-600 dark:text-gray-400" /></span>
                   <div>
                     <div className="font-medium text-gray-900 dark:text-white">Route Planner</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">Plan your EV journey</div>
@@ -106,7 +107,7 @@ export default function MobileNav() {
                   onClick={() => setShowMore(false)}
                   className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <span className="text-3xl">ℹ️</span>
+                  <span className="text-3xl"><InfoIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" /></span>
                   <div>
                     <div className="font-medium text-gray-900 dark:text-white">About</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">Learn about EVGuide SL</div>
@@ -118,7 +119,7 @@ export default function MobileNav() {
                   onClick={() => setShowMore(false)}
                   className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <span className="text-3xl">❓</span>
+                  <span className="text-3xl"><HelpCircle className="w-6 h-6 text-gray-600 dark:text-gray-400" /></span>
                   <div>
                     <div className="font-medium text-gray-900 dark:text-white">FAQ</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">Frequently asked questions</div>

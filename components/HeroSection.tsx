@@ -70,9 +70,9 @@ export default function HeroSection({
                          before:absolute before:inset-0 before:bg-linear-to-r before:from-green-400 before:to-emerald-400 
                          before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-10"
             >
-              <span className="relative flex items-center justify-center gap-3">
+              <span className="relative flex items-center justify-center gap-1">
                 <svg 
-                  className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" 
+                  className="w-5 h-3 transition-transform duration-300 group-hover:translate-x-1" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"

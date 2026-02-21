@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Vehicle, RouteFormInputs, SLLocation } from '@/types';
 import { SRI_LANKAN_LOCATIONS, searchLocations } from '@/lib/locations';
+import { Zap, Loader2 } from 'lucide-react';
 
 interface RoutePlannerFormProps {
   vehicles: Vehicle[];
@@ -310,9 +311,17 @@ export default function RoutePlannerForm({
       <button
         type="submit"
         disabled={!origin || !destination || !vehicleId || isCalculating}
-        className="w-full rounded-xl bg-linear-to-r from-emerald-600 to-emerald-700 px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:from-emerald-700 hover:to-emerald-800 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full rounded-xl bg-linear-to-r from-emerald-600 to-emerald-700 px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:from-emerald-700 hover:to-emerald-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
-        {isCalculating ? '⚡ Calculating Route...' : '⚡ Check Route'}
+        {isCalculating ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" /> Calculating Route...
+          </>
+        ) : (
+          <>
+            <Zap className="w-5 h-5" /> Check Route
+          </>
+        )}
       </button>
     </form>
   );

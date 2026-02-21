@@ -155,7 +155,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
   const specs: SpecComparison[] = [
     {
       label: 'Price',
-      icon: '💰',
+      icon: 'dollar-sign',
       unit: '',
       values: vehicles.map(v => v.price_lkr),
       winnerIndices: [],
@@ -163,7 +163,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Range (SL Est.)',
-      icon: '⚡',
+      icon: 'zap',
       unit: 'km',
       values: vehicles.map(v => v.range_sl_estimate),
       winnerIndices: [],
@@ -171,7 +171,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Range (WLTP)',
-      icon: '📊',
+      icon: 'bar-chart-3',
       unit: 'km',
       values: vehicles.map(v => v.range_wltp),
       winnerIndices: [],
@@ -179,7 +179,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Battery Capacity',
-      icon: '🔋',
+      icon: 'battery',
       unit: 'kWh',
       values: vehicles.map(v => v.battery_kwh),
       winnerIndices: [],
@@ -187,7 +187,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Motor Power',
-      icon: '💪',
+      icon: 'gauge',
       unit: 'kW',
       values: vehicles.map(v => v.motor_power_kw),
       winnerIndices: [],
@@ -195,7 +195,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: '0-100 km/h',
-      icon: '⏱️',
+      icon: 'timer',
       unit: 's',
       values: vehicles.map(v => v.acceleration_0_100),
       winnerIndices: [],
@@ -203,7 +203,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Top Speed',
-      icon: '🚀',
+      icon: 'rocket',
       unit: 'km/h',
       values: vehicles.map(v => v.top_speed_kmh),
       winnerIndices: [],
@@ -211,7 +211,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Seating',
-      icon: '👥',
+      icon: 'users',
       unit: 'seats',
       values: vehicles.map(v => v.seating_capacity),
       winnerIndices: [],
@@ -219,7 +219,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Cargo Space',
-      icon: '📦',
+      icon: 'package',
       unit: 'L',
       values: vehicles.map(v => v.cargo_space_liters),
       winnerIndices: [],
@@ -227,7 +227,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'DC Fast Charging',
-      icon: '⚡',
+      icon: 'zap',
       unit: 'min (20-80%)',
       values: vehicles.map(v => v.charging_time_dc_minutes),
       winnerIndices: [],
@@ -235,7 +235,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'AC Charging',
-      icon: '🔌',
+      icon: 'plug',
       unit: 'hrs (0-100%)',
       values: vehicles.map(v => v.charging_time_ac_hours),
       winnerIndices: [],
@@ -243,7 +243,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Body Type',
-      icon: '🚗',
+      icon: 'car',
       unit: '',
       values: vehicles.map(v => v.body_type),
       winnerIndices: [],
@@ -251,7 +251,7 @@ export function compareVehicleSpecs(vehicles: Vehicle[]): SpecComparison[] {
     },
     {
       label: 'Drive Type',
-      icon: '🛣️',
+      icon: 'route',
       unit: '',
       values: vehicles.map(v => v.drive_type),
       winnerIndices: [],
@@ -311,33 +311,33 @@ export function groupSpecsByCategory(specs: SpecComparison[]): SpecCategory[] {
   const categories: SpecCategory[] = [
     {
       name: 'Pricing',
-      icon: '💰',
+      icon: 'dollar-sign',
       specs: specs.filter(s => s.label === 'Price'),
     },
     {
       name: 'Range & Battery',
-      icon: '🔋',
+      icon: 'battery',
       specs: specs.filter(s => 
         ['Range (SL Est.)', 'Range (WLTP)', 'Battery Capacity'].includes(s.label)
       ),
     },
     {
       name: 'Performance',
-      icon: '🚀',
+      icon: 'rocket',
       specs: specs.filter(s => 
         ['Motor Power', '0-100 km/h', 'Top Speed'].includes(s.label)
       ),
     },
     {
       name: 'Charging',
-      icon: '⚡',
+      icon: 'zap',
       specs: specs.filter(s => 
         ['DC Fast Charging', 'AC Charging'].includes(s.label)
       ),
     },
     {
       name: 'Dimensions',
-      icon: '📏',
+      icon: 'ruler',
       specs: specs.filter(s => 
         ['Seating', 'Cargo Space', 'Body Type', 'Drive Type'].includes(s.label)
       ),

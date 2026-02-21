@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Vehicle } from '@/types';
+import { X } from 'lucide-react';
 
 interface CompareBarProps {
   selectedVehicles: Vehicle[];
@@ -40,7 +41,7 @@ export default function CompareBar({ selectedVehicles, onRemove, onClear }: Comp
                   className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-100"
                   aria-label={`Remove ${vehicle.make} ${vehicle.model}`}
                 >
-                  ✕
+                  <X className="w-3 h-3" />
                 </button>
               </div>
             ))}

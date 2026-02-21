@@ -1,6 +1,7 @@
 'use client';
 
 import { Vehicle } from '@/types';
+import { Home, Zap, Lightbulb, Moon } from 'lucide-react';
 
 interface ChargingInfoProps {
   vehicle: Vehicle;
@@ -15,7 +16,7 @@ export default function ChargingInfo({ vehicle }: ChargingInfoProps) {
         {/* AC Charging */}
         <div className="rounded-2xl border-2 border-blue-200 bg-linear-to-br from-blue-50 to-blue-50/50 p-6 dark:border-blue-500/30 dark:from-blue-900/20 dark:to-blue-900/10">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl">🏠</span>
+            <Home className="w-10 h-10 text-blue-600" />
             <div>
               <h3 className="text-lg font-bold text-blue-900 dark:text-blue-300">Home AC Charging</h3>
               <p className="text-sm text-blue-700 dark:text-blue-400">Type 2 (Standard)</p>
@@ -40,8 +41,8 @@ export default function ChargingInfo({ vehicle }: ChargingInfoProps) {
           </div>
 
           <div className="mt-4 rounded-lg border border-blue-200 bg-blue-100/30 p-3 dark:border-blue-500/30 dark:bg-blue-900/20">
-            <p className="text-xs text-blue-800 dark:text-blue-300">
-              💡 Best for overnight charging when you have access to a dedicated outlet.
+            <p className="text-xs text-blue-800 dark:text-blue-300 flex items-center gap-2">
+              <Lightbulb className="w-4 h-4" /> Best for overnight charging when you have access to a dedicated outlet.
             </p>
           </div>
         </div>
@@ -49,7 +50,7 @@ export default function ChargingInfo({ vehicle }: ChargingInfoProps) {
         {/* DC Fast Charging */}
         <div className="rounded-2xl border-2 border-orange-200 bg-linear-to-br from-orange-50 to-orange-50/50 p-6 dark:border-orange-500/30 dark:from-orange-900/20 dark:to-orange-900/10">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl">⚡</span>
+            <Zap className="w-10 h-10 text-orange-600" />
             <div>
               <h3 className="text-lg font-bold text-orange-900 dark:text-orange-300">Fast DC Charging</h3>
               <p className="text-sm text-orange-700 dark:text-orange-400">CCS2 (20-80%)</p>
@@ -74,8 +75,8 @@ export default function ChargingInfo({ vehicle }: ChargingInfoProps) {
           </div>
 
           <div className="mt-4 rounded-lg border border-orange-200 bg-orange-100/30 p-3 dark:border-orange-500/30 dark:bg-orange-900/20">
-            <p className="text-xs text-orange-800 dark:text-orange-300">
-              ⚡ Fast top-ups on road trips. Recommended for 20-80% charging to preserve battery health.
+            <p className="text-xs text-orange-800 dark:text-orange-300 flex items-center gap-2">
+              <Zap className="w-4 h-4" /> Fast top-ups on road trips. Recommended for 20-80% charging to preserve battery health.
             </p>
           </div>
         </div>
@@ -88,7 +89,7 @@ export default function ChargingInfo({ vehicle }: ChargingInfoProps) {
         <div className="space-y-4">
           {/* Scenario 1 */}
           <div className="flex items-start gap-4 rounded-lg bg-white p-4 dark:bg-slate-900">
-            <span className="text-2xl">🌙</span>
+            <Moon className="w-6 h-6 text-indigo-600 shrink-0" />
             <div className="flex-1">
               <p className="font-semibold text-slate-900 dark:text-white">Overnight Home Charging</p>
               <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">

@@ -1,3 +1,5 @@
+import { Battery, DollarSign, Map } from 'lucide-react';
+
 interface ValuePropositionsProps {
   chargingStationCount: number;
 }
@@ -5,17 +7,17 @@ interface ValuePropositionsProps {
 export default function ValuePropositions({ chargingStationCount }: ValuePropositionsProps) {
   const propositions = [
     {
-      icon: '🔋',
+      icon: <Battery className="w-12 h-12 text-emerald-500" />,
       title: 'Real Range Estimates',
       description: 'Based on Sri Lankan driving conditions, not just manufacturer claims',
     },
     {
-      icon: '💰',
+      icon: <DollarSign className="w-12 h-12 text-blue-500" />,
       title: 'True Cost Analysis',
       description: 'Total cost of ownership compared to petrol vehicles',
     },
     {
-      icon: '🗺️',
+      icon: <Map className="w-12 h-12 text-purple-500" />,
       title: 'Charging Network',
       description: `${chargingStationCount}+ stations mapped across Sri Lanka`,
     },
@@ -39,7 +41,7 @@ export default function ValuePropositions({ chargingStationCount }: ValueProposi
               key={index}
               className="bg-linear-to-br from-green-50 to-emerald-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-8 border border-green-100 dark:border-slate-600 hover:shadow-lg transition-shadow"
             >
-              <div className="text-5xl mb-4">{prop.icon}</div>
+              <div className="mb-4 flex justify-center md:justify-start">{prop.icon}</div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 {prop.title}
               </h3>

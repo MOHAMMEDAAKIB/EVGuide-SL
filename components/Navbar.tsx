@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import SearchBar from './SearchBar';
 import ThemeToggle from './ThemeToggle';
+import { DollarSign, Map } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +36,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <div className="text-2xl font-bold text-green-600 dark:text-green-500">
-                <img src="/images/ev-logo.png" alt="EVGuide SL Logo" className="w-12 h-8" />
+                <img src="/images/ev-logo.png" alt="EVGuide SL Logo" className="w-12 h-6" />
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
                 EVGuide <span className="text-green-600 dark:text-green-500">SL</span>
@@ -82,15 +83,15 @@ export default function Navbar() {
                 <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <Link
                     href="/tools/tco-calculator"
-                    className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-t-lg"
+                    className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-t-lg flex items-center gap-2"
                   >
-                    💰 TCO Calculator
+                    <DollarSign className="w-4 h-4" /> TCO Calculator
                   </Link>
                   <Link
                     href="/tools/route-planner"
-                    className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-b-lg"
+                    className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-b-lg flex items-center gap-2"
                   >
-                    🗺️ Route Planner
+                    <Map className="w-4 h-4" /> Route Planner
                   </Link>
                 </div>
               </div>

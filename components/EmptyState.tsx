@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Inbox, Search, Heart, GitCompare, MapPin } from 'lucide-react';
 
 interface EmptyStateProps {
   icon?: ReactNode | string;
@@ -12,7 +13,7 @@ interface EmptyStateProps {
 }
 
 export default function EmptyState({
-  icon = '📭',
+  icon = <Inbox className="w-12 h-12 text-gray-400" />,
   title,
   description,
   action,
@@ -21,7 +22,7 @@ export default function EmptyState({
   if (variant === 'compact') {
     return (
       <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
-        <div className="text-4xl mb-3">{typeof icon === 'string' ? icon : icon}</div>
+        <div className="mb-3">{icon}</div>
         <h3 className="text-base font-medium text-gray-900 dark:text-white mb-1">{title}</h3>
         {description && (
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{description}</p>
@@ -42,7 +43,7 @@ export default function EmptyState({
     <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
       {/* Icon */}
       <div className="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6">
-        <span className="text-5xl">{typeof icon === 'string' ? icon : icon}</span>
+        {icon}
       </div>
 
       {/* Title & Description */}
@@ -68,7 +69,7 @@ export default function EmptyState({
 export function NoResultsFound({ onReset }: { onReset?: () => void }) {
   return (
     <EmptyState
-      icon="🔍"
+      icon={<Search className="w-12 h-12 text-blue-500" />}
       title="No results found"
       description="We couldn't find any vehicles matching your criteria. Try adjusting your filters."
       action={onReset ? { label: 'Reset Filters', onClick: onReset } : undefined}
@@ -79,7 +80,7 @@ export function NoResultsFound({ onReset }: { onReset?: () => void }) {
 export function NoSavedVehicles({ onBrowse }: { onBrowse: () => void }) {
   return (
     <EmptyState
-      icon="💚"
+      icon={<Heart className="w-12 h-12 text-pink-500" />}
       title="No saved vehicles"
       description="You haven't saved any vehicles yet. Start browsing to find your perfect EV!"
       action={{ label: 'Browse Vehicles', onClick: onBrowse }}
@@ -90,7 +91,7 @@ export function NoSavedVehicles({ onBrowse }: { onBrowse: () => void }) {
 export function NoComparison({ onBrowse }: { onBrowse: () => void }) {
   return (
     <EmptyState
-      icon="🔀"
+      icon={<GitCompare className="w-12 h-12 text-purple-500" />}
       title="No vehicles to compare"
       description="Select at least 2 vehicles to start comparing their features and specifications."
       action={{ label: 'Browse Vehicles', onClick: onBrowse }}
@@ -101,7 +102,7 @@ export function NoComparison({ onBrowse }: { onBrowse: () => void }) {
 export function NoStationsNearby({ onExpand }: { onExpand?: () => void }) {
   return (
     <EmptyState
-      icon="📍"
+      icon={<MapPin className="w-12 h-12 text-red-500" />}
       title="No charging stations nearby"
       description="We couldn't find any charging stations in your immediate area. Try expanding your search radius."
       action={onExpand ? { label: 'Expand Search', onClick: onExpand } : undefined}

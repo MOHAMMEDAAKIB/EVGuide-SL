@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Car, Zap, Settings, Calculator } from 'lucide-react';
 import { Vehicle } from '@/types';
 import {
   FUEL_TYPES,
@@ -107,7 +108,7 @@ export default function TCOForm({
       {/* Current Vehicle Section */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>🚗</span> Your Current Vehicle
+          <Car className="w-6 h-6 text-gray-600" /> Your Current Vehicle
         </h3>
         
         <div className="space-y-4">
@@ -216,7 +217,7 @@ export default function TCOForm({
       {/* Electric Vehicle Section */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>⚡</span> Electric Vehicle
+          <Zap className="w-6 h-6 text-yellow-500" /> Electric Vehicle
         </h3>
         
         <div className="space-y-4">
@@ -285,7 +286,7 @@ export default function TCOForm({
           className="flex w-full items-center justify-between p-6 text-left transition hover:bg-slate-50 dark:hover:bg-slate-800/50"
         >
           <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>⚙️</span> Advanced Options
+            <Settings className="w-6 h-6 text-gray-600" /> Advanced Options
           </h3>
           <span className="text-slate-500 dark:text-slate-400">
             {showAdvanced ? '▲' : '▼'}
@@ -398,7 +399,7 @@ export default function TCOForm({
         className="w-full rounded-xl bg-emerald-600 px-6 py-4 text-lg font-bold text-white shadow-lg transition hover:bg-emerald-700 hover:shadow-xl dark:bg-emerald-500 dark:hover:bg-emerald-600"
       >
         <span className="flex items-center justify-center gap-2">
-          <span>💰</span> Calculate Savings
+          <Calculator className="w-6 h-6" /> Calculate Savings
         </span>
       </button>
     </form>

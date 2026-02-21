@@ -64,7 +64,7 @@ export default function ThemeToggle() {
   return (
     <button 
       onClick={toggleTheme}
-      className="group relative w-14 h-14 rounded-full 
+      className="group relative w-10 h-10 rounded-full 
                  bg-white/10 hover:bg-white/20 
                  backdrop-blur-xl 
                  border-2 border-white/30

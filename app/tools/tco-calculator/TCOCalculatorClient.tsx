@@ -13,6 +13,7 @@ import {
   decodeCalculationFromURL,
 } from '@/lib/tcoCalculations';
 import { copyComparisonLink } from '@/lib/exportPdf';
+import { Link2, RotateCcw, Check } from 'lucide-react';
 
 interface TCOCalculatorClientProps {
   vehicles: Vehicle[];
@@ -161,16 +162,24 @@ export default function TCOCalculatorClient({
               <button
                 onClick={handleShare}
                 disabled={isCopied}
-                className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 flex items-center gap-2"
               >
-                {isCopied ? '✓ Copied!' : '🔗 Share Calculation'}
+                {isCopied ? (
+                  <>
+                    <Check className="w-4 h-4" /> Copied!
+                  </>
+                ) : (
+                  <>
+                    <Link2 className="w-4 h-4" /> Share Calculation
+                  </>
+                )}
               </button>
               
               <button
                 onClick={handleReset}
-                className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 flex items-center gap-2"
               >
-                🔄 Reset
+                <RotateCcw className="w-4 h-4" /> Reset
               </button>
             </div>
             

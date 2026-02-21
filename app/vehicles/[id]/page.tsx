@@ -12,6 +12,7 @@ import ChargingInfo from '@/components/ChargingInfo';
 import FeaturesList from '@/components/FeaturesList';
 import CTAButtons from '@/components/CTAButtons';
 import SimilarVehicles from '@/components/SimilarVehicles';
+import { Battery, Clock, Power, Zap, ArrowLeft, Heart, GitCompare } from 'lucide-react';
 
 export default function VehicleDetailPage() {
   const params = useParams<{ id?: string | string[] }>();
@@ -94,7 +95,7 @@ export default function VehicleDetailPage() {
               href="/vehicles"
               className="flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
             >
-              ← Back to Browse
+              <ArrowLeft className="w-4 h-4" /> Back to Browse
             </Link>
             <div className="flex items-center gap-3">
               <button
@@ -105,7 +106,7 @@ export default function VehicleDetailPage() {
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
                 }`}
               >
-                ❤️ Save
+                <Heart className="w-4 h-4" /> {isSaved ? 'Saved' : 'Save'}
               </button>
               <button
                 onClick={() => setIsCompared(!isCompared)}
@@ -115,7 +116,7 @@ export default function VehicleDetailPage() {
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
                 }`}
               >
-                🔀 Compare
+                <GitCompare className="w-4 h-4" /> Compare
               </button>
             </div>
           </div>
@@ -172,25 +173,25 @@ export default function VehicleDetailPage() {
         {/* Key Specs Cards */}
         <div className="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2">🔋 Battery</p>
+            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2"><Battery className="w-5 h-5 text-emerald-600" />Battery</p>
             <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{vehicle.battery_kwh}</p>
             <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">kWh</p>
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2">⚡ Range (SL)</p>
+            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2"><Zap className="w-5 h-5 text-yellow-500" /> Range (SL)</p>
             <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{vehicle.range_sl_estimate}</p>
             <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">km</p>
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2">🏎️ Power</p>
+            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2"><Power className="w-5 h-5 text-blue-500" /> Power</p>
             <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{vehicle.motor_power_kw}</p>
             <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">kW</p>
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2">⏱️ 0-100</p>
+            <p className="text-xs font-medium text-slate-600 dark:text-slate-400 mb-2"><Clock className="w-5 h-5 text-slate-500" /> 0-100</p>
             <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
               {vehicle.acceleration_0_100 || '—'}
             </p>

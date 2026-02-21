@@ -7,6 +7,7 @@ import { Vehicle } from '@/types';
 import ComparisonTable from '@/components/comparison/ComparisonTable';
 import VehicleSelector from '@/components/comparison/VehicleSelector';
 import { exportComparisonToPdf, copyComparisonLink } from '@/lib/exportPdf';
+import { Link2, FileDown, Check } from 'lucide-react';
 
 interface ComparisonClientProps {
   vehicles: Vehicle[];
@@ -122,17 +123,29 @@ export default function ComparisonClient({ vehicles }: ComparisonClientProps) {
               <button
                 onClick={handleCopyLink}
                 disabled={isCopied}
-                className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 flex items-center gap-2"
               >
-                {isCopied ? '✓ Copied!' : '🔗 Share'}
+                {isCopied ? (
+                  <>
+                    <Check className="w-4 h-4" /> Copied!
+                  </>
+                ) : (
+                  <>
+                    <Link2 className="w-4 h-4" /> Share
+                  </>
+                )}
               </button>
 
               <button
                 onClick={handleExportPDF}
                 disabled={isExporting}
-                className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50 dark:bg-emerald-500 dark:hover:bg-emerald-600"
+                className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50 dark:bg-emerald-500 dark:hover:bg-emerald-600 flex items-center gap-2"
               >
-                {isExporting ? 'Exporting...' : '📄 Export PDF'}
+                {isExporting ? 'Exporting...' : (
+                  <>
+                    <FileDown className="w-4 h-4" /> Export PDF
+                  </>
+                )}
               </button>
             </div>
           </div>

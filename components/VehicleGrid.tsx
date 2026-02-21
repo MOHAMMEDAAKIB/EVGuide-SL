@@ -2,6 +2,7 @@
 
 import { Vehicle } from '@/types';
 import VehicleCard from './VehicleCard';
+import { Search } from 'lucide-react';
 
 interface VehicleGridProps {
   vehicles: Vehicle[];
@@ -29,7 +30,9 @@ export default function VehicleGrid({ vehicles, filteredVehicles, isFiltered }: 
         {displayVehicles.length === 0 ? (
           // Empty State
           <div className="text-center py-16">
-            <div className="text-6xl mb-4">🔍</div>
+            <div className="flex justify-center mb-4">
+              <Search className="w-16 h-16 text-gray-400" />
+            </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
               No vehicles found
             </h3>

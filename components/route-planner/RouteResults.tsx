@@ -3,6 +3,7 @@
 import { Vehicle, RangeAnalysis, RouteData, StationWithDistance } from '@/types';
 import { Map, Marker, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
 import { useState } from 'react';
+import { CheckCircle, XCircle } from 'lucide-react';
 
 interface RouteResultsProps {
   vehicle: Vehicle;
@@ -46,9 +47,9 @@ export default function RouteResults({
       >
         <div className="flex items-start gap-6">
           <div
-            className={`text-6xl ${rangeAnalysis.feasible ? 'text-emerald-600' : 'text-red-600'}`}
+            className={`${rangeAnalysis.feasible ? 'text-emerald-600' : 'text-red-600'}`}
           >
-            {rangeAnalysis.feasible ? '✅' : '❌'}
+            {rangeAnalysis.feasible ? <CheckCircle className="w-16 h-16" /> : <XCircle className="w-16 h-16" />}
           </div>
           <div className="flex-1">
             <h2

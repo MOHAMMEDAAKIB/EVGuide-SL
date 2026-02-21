@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { supabase } from '@/lib/supabase';
 import { Vehicle, ChargingStation } from '@/types';
 import RoutePlannerClient from './RoutePlannerClient';
+import { Zap, MapPin, CheckCircle, Map } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'EV Route Planner - EVGuide SL',
@@ -82,7 +83,7 @@ export default async function RoutePlannerPage({ searchParams }: RoutePlannerPag
               Route Planning
             </div>
             <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              🗺️ EV Route Feasibility Checker
+              <Map className="w-8 h-8 inline mr-2 text-emerald-600 dark:text-emerald-500" /> EV Route Feasibility Checker
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">
               Plan your electric vehicle journey across Sri Lanka. Check if your EV can complete
@@ -117,7 +118,7 @@ export default async function RoutePlannerPage({ searchParams }: RoutePlannerPag
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <div className="text-3xl mb-2">📍</div>
+                <div className="text-3xl mb-2"><MapPin className="w-6 h-6 text-red-600 dark:text-red-500" /></div>
                 <h3 className="font-bold text-slate-900 dark:text-white mb-1">
                   Set Your Journey
                 </h3>
@@ -127,7 +128,7 @@ export default async function RoutePlannerPage({ searchParams }: RoutePlannerPag
                 </p>
               </div>
               <div>
-                <div className="text-3xl mb-2">⚡</div>
+                <div className="text-3xl mb-2"><Zap className="w-6 h-6 text-amber-500 dark:text-amber-400" /></div>
                 <h3 className="font-bold text-slate-900 dark:text-white mb-1">Select Your EV</h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   Pick your electric vehicle and set your current battery charge level to get
@@ -135,7 +136,7 @@ export default async function RoutePlannerPage({ searchParams }: RoutePlannerPag
                 </p>
               </div>
               <div>
-                <div className="text-3xl mb-2">✅</div>
+                <div className="text-3xl mb-2"><CheckCircle className="w-6 h-6 text-emerald-600 dark:text-emerald-500" /></div>
                 <h3 className="font-bold text-slate-900 dark:text-white mb-1">
                   Get Your Results
                 </h3>

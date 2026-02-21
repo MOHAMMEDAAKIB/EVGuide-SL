@@ -1,6 +1,7 @@
 'use client';
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { TrendingUp, Lightbulb } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import { YearlyData } from '@/lib/tcoCalculations';
 
@@ -46,13 +47,13 @@ export default function SavingsChart({ projectionData, breakEvenYears }: Savings
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
       <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-        <span>📈</span> 5-Year Cost Projection
+        <TrendingUp className="w-6 h-6 text-blue-600" /> 5-Year Cost Projection
       </h3>
       
       {breakEvenYears < Infinity && breakEvenYears <= 5 && (
         <div className="mb-4 rounded-lg border-l-4 border-emerald-600 bg-emerald-50 p-4 dark:border-emerald-400 dark:bg-emerald-900/20">
-          <p className="text-sm font-semibold text-emerald-900 dark:text-emerald-300">
-            💡 Break-even point: <span className="text-lg">{breakEvenYears.toFixed(1)} years</span>
+          <p className="text-sm font-semibold text-emerald-900 dark:text-emerald-300 flex items-center gap-2">
+            <Lightbulb className="w-5 h-5 text-emerald-600" /> Break-even point: <span className="text-lg">{breakEvenYears.toFixed(1)} years</span>
           </p>
           <p className="text-xs text-emerald-800 dark:text-emerald-200 mt-1">
             After this point, you start saving money with the EV

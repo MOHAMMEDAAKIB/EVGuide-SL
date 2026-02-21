@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Vehicle } from '@/types';
 import { formatCurrency, formatRange } from '@/lib/utils';
+import { Battery, Car, Zap } from 'lucide-react';
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -79,7 +80,7 @@ export default function VehicleCard({
           />
         ) : (
           <div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-500">
-            <span className="text-4xl">🚗</span>
+            <Car className="w-12 h-12" />
           </div>
         )}
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent opacity-70" />
@@ -118,7 +119,7 @@ export default function VehicleCard({
             <div>
               <p className="mb-1 text-xs text-slate-500 dark:text-slate-400">Range (SL)</p>
               <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                ⚡ {formatRange(vehicle.range_sl_estimate)}
+                <Zap className="w-5 h-5 text-yellow-500 mb-2" /> {formatRange(vehicle.range_sl_estimate)}
               </p>
             </div>
 
@@ -126,7 +127,7 @@ export default function VehicleCard({
             <div>
               <p className="mb-1 text-xs text-slate-500 dark:text-slate-400">Battery</p>
               <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                🔋 {vehicle.battery_kwh} kWh
+                <Battery className="w-5 h-5 text-emerald-600 mb-2" /> {vehicle.battery_kwh} kWh
               </p>
             </div>
           </div>

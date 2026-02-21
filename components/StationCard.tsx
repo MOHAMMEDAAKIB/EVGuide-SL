@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Zap } from 'lucide-react';
 
 interface ChargingStation {
   id: string;
@@ -56,8 +57,8 @@ export default function StationCard({
     return (
       <div className="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500 transition-all cursor-pointer">
         <div className="flex items-center space-x-3 flex-1 min-w-0">
-          <div className="flex-shrink-0 w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
-            <span className="text-xl">⚡</span>
+          <div className="shrink-0 w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+            <Zap className="w-5 h-5 text-yellow-500" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="font-medium text-gray-900 dark:text-white truncate">{station.name}</h3>
@@ -100,7 +101,7 @@ export default function StationCard({
           )}
 
           {station.power_kw && (
-            <p className="text-sm text-gray-600 dark:text-gray-400">⚡ {station.power_kw} kW</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400"><Zap className="w-4 h-4 inline mr-1" /> {station.power_kw} kW</p>
           )}
         </div>
 

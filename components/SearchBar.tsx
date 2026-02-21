@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Vehicle } from '@/types';
-
+import { Vehicle } from '@/types';import { Car, Zap } from 'lucide-react';
 interface SearchBarProps {
   onClose?: () => void;
 }
@@ -193,7 +192,11 @@ export default function SearchBar({ onClose }: SearchBarProps) {
                 }`}
               >
                 <div className="shrink-0 w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                  {result.type === 'vehicle' ? '🚗' : '⚡'}
+                  {result.type === 'vehicle' ? (
+                    <Car className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                  ) : (
+                    <Zap className="w-5 h-5 text-yellow-500" />
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="font-medium text-gray-900 dark:text-white truncate">{result.name}</div>

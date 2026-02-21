@@ -5,6 +5,7 @@ import { formatCurrency } from '@/lib/utils';
 import { TCOResults as TCOResultsType } from '@/lib/tcoCalculations';
 import CostBreakdown from './CostBreakdown';
 import SavingsChart from './SavingsChart';
+import { DollarSign } from 'lucide-react';
 
 interface TCOResultsProps {
   results: TCOResultsType;
@@ -26,8 +27,8 @@ export default function TCOResults({ results }: TCOResultsProps) {
     <div className="space-y-6">
       {/* Main Results Card */}
       <div className="rounded-2xl border border-emerald-200 bg-linear-to-br from-emerald-50 via-white to-emerald-50/50 p-8 dark:border-emerald-500/30 dark:from-emerald-900/20 dark:via-slate-900 dark:to-emerald-900/10">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          💰 Your Savings with Electric
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <DollarSign className="w-7 h-7 text-emerald-600" /> Your Savings with Electric
         </h2>
         
         {/* Monthly Comparison Bars */}

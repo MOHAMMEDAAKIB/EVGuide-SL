@@ -1,6 +1,7 @@
 'use client';
 
 import { formatCurrency } from '@/lib/utils';
+import { BarChart3 } from 'lucide-react';
 
 interface CostBreakdownProps {
   monthlyFuelCostPetrol: number;
@@ -37,7 +38,7 @@ export default function CostBreakdown({
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
       <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-        <span>📊</span> Detailed Cost Breakdown
+        <BarChart3 className="w-5 h-5 text-blue-500" /> Detailed Cost Breakdown
       </h3>
       
       <div className="overflow-x-auto">

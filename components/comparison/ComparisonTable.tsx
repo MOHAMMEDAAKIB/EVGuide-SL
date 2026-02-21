@@ -10,12 +10,25 @@ import {
   SpecCategory
 } from '@/lib/utils';
 import ComparisonRow from './ComparisonRow';
+import { GitCompare, X, Car, ChevronDown, ChevronUp, DollarSign, Battery, Rocket, Zap, Ruler } from 'lucide-react';
 
 interface ComparisonTableProps {
   vehicles: Vehicle[];
   onRemoveVehicle: (vehicleId: string) => void;
   onChangeVehicle: (vehicleId: string) => void;
 }
+
+const getCategoryIcon = (iconName: string) => {
+  const iconMap: Record<string, React.ReactNode> = {
+    'dollar-sign': <DollarSign className="w-5 h-5 text-emerald-600" />,
+    'battery': <Battery className="w-5 h-5 text-green-500" />,
+    'rocket': <Rocket className="w-5 h-5 text-red-500" />,
+    'zap': <Zap className="w-5 h-5 text-yellow-500" />,
+    'ruler': <Ruler className="w-5 h-5 text-blue-500" />,
+  };
+  
+  return iconMap[iconName] || <span>{iconName}</span>;
+};
 
 const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
   ({ vehicles, onRemoveVehicle, onChangeVehicle }, ref) => {
@@ -67,7 +80,7 @@ const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
                           />
                         ) : (
                           <div className="flex h-full items-center justify-center text-4xl text-slate-400">
-                            🚗
+                            <Car className="w-12 h-12" />
                           </div>
                         )}
                       </div>
@@ -89,15 +102,15 @@ const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
                       <div className="flex gap-2">
                         <button
                           onClick={() => onChangeVehicle(vehicle.id)}
-                          className="rounded-lg bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 transition hover:bg-slate-300 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+                          className="rounded-lg bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 transition hover:bg-slate-300 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600 flex items-center gap-1"
                         >
-                          🔀 Change
+                          <GitCompare className="w-3 h-3" /> Change
                         </button>
                         <button
                           onClick={() => onRemoveVehicle(vehicle.id)}
-                          className="rounded-lg bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 transition hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:hover:bg-rose-900/50"
+                          className="rounded-lg bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 transition hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:hover:bg-rose-900/50 flex items-center gap-1"
                         >
-                          ✕ Remove
+                          <X className="w-3 h-3" /> Remove
                         </button>
                       </div>
                     </div>
@@ -124,13 +137,13 @@ const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
                           className="flex w-full items-center justify-between font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition"
                         >
                           <div className="flex items-center gap-2">
-                            <span className="text-lg">{category.icon}</span>
+                            {getCategoryIcon(category.icon)}
                             <span className="text-sm uppercase tracking-wide">
                               {category.name}
                             </span>
                           </div>
                           <span className="text-slate-500 dark:text-slate-400">
-                            {isCollapsed ? '▼' : '▲'}
+                            {isCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
                           </span>
                         </button>
                       </td>

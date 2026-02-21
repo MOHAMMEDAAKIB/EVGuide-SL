@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Vehicle } from '@/types';
+import { Car } from 'lucide-react';
 
 interface ComparisonCardProps {
   vehicle: Vehicle;
@@ -38,8 +39,8 @@ export default function ComparisonCard({ vehicle, onRemove, isCompact = false }:
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-2xl">
-                🚗
+              <div className="w-full h-full flex items-center justify-center">
+                <Car className="w-8 h-8 text-gray-400" />
               </div>
             )}
           </div>
@@ -83,8 +84,8 @@ export default function ComparisonCard({ vehicle, onRemove, isCompact = false }:
             className="object-cover"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-6xl">
-            🚗
+          <div className="w-full h-full flex items-center justify-center">
+            <Car className="w-16 h-16 text-gray-400" />
           </div>
         )}
       </div>

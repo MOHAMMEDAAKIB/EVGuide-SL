@@ -8,6 +8,7 @@ import SortDropdown from '@/components/SortDropdown';
 import CompareBar from '@/components/CompareBar';
 import VehicleCard from '@/components/VehicleCard';
 import { Vehicle } from '@/types';
+import { Search } from 'lucide-react';
 
 interface VehicleBrowseClientProps {
   vehicles: Vehicle[];
@@ -203,7 +204,7 @@ export default function VehicleBrowseClient({
 
             {vehicles.length === 0 ? (
               <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-10 text-center shadow-sm dark:border-slate-700/70 dark:bg-slate-900/60">
-                <div className="text-5xl">🔍</div>
+                <div className="text-5xl"><Search className="w-12 h-12 text-slate-400 dark:text-slate-500" /></div>
                 <h2 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">
                   No vehicles found
                 </h2>

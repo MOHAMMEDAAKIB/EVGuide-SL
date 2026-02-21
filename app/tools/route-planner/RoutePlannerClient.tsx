@@ -14,6 +14,7 @@ import {
 import RoutePlannerForm from '@/components/route-planner/RoutePlannerForm';
 import RouteResults from '@/components/route-planner/RouteResults';
 import GoogleMapsProvider from '@/components/route-planner/GoogleMapsProvider';
+import { Link2, Check } from 'lucide-react';
 
 interface RoutePlannerClientProps {
   vehicles: Vehicle[];
@@ -174,9 +175,17 @@ export default function RoutePlannerClient({
           <div className="flex justify-end">
             <button
               onClick={handleShare}
-              className="rounded-xl border border-slate-200 bg-white px-6 py-3 font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="rounded-xl border border-slate-200 bg-white px-6 py-3 font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 flex items-center gap-2"
             >
-              {isCopied ? '✓ Link Copied!' : '🔗 Share This Route'}
+              {isCopied ? (
+                <>
+                  <Check className="w-4 h-4" /> Link Copied!
+                </>
+              ) : (
+                <>
+                  <Link2 className="w-4 h-4" /> Share This Route
+                </>
+              )}
             </button>
           </div>
 
