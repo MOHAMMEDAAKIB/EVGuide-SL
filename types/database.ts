@@ -16,6 +16,11 @@ export interface Database {
         Insert: Omit<FuelPrice, 'id' | 'created_at'>;
         Update: Partial<Omit<FuelPrice, 'id' | 'created_at'>>;
       };
+      admin_users: {
+        Row: AdminUser;
+        Insert: Omit<AdminUser, 'id' | 'created_at'>;
+        Update: Partial<Omit<AdminUser, 'id' | 'created_at'>>;
+      };
     };
   };
 }
@@ -70,6 +75,14 @@ export interface FuelPrice {
   fuel_type: 'petrol' | 'diesel';
   price_lkr: number; // Price per liter
   effective_date: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string | null;
+}
+
+export interface AdminUser {
+  id: string;
+  email: string;
   is_active: boolean;
   created_at: string;
   updated_at: string | null;

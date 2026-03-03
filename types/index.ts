@@ -1,4 +1,4 @@
-export type { Database, Vehicle, ChargingStation, FuelPrice } from './database';
+export type { Database, Vehicle, ChargingStation, FuelPrice, AdminUser } from './database';
 
 // Re-export route planning types
 export type {
