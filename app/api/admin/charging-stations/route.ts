@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       .insert([{
         ...data,
         updated_at: new Date().toISOString(),
-      }])
+      }] as never)
       .select()
       .single();
 

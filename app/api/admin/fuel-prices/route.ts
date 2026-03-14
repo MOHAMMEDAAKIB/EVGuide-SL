@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     if (data.is_active) {
       await supabase
         .from('fuel_prices')
-        .update({ is_active: false })
+        .update({ is_active: false } as never)
         .eq('fuel_type', data.fuel_type)
         .eq('is_active', true);
     }
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       .insert([{
         ...data,
         updated_at: new Date().toISOString(),
-      }])
+      }] as never)
       .select()
       .single();
 
