@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,13 +11,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json([]);
     }
 
-    const supabase = createClient();
-
-    // Search in brand, model, and variant
+    // Search in make and model (matching actual database schema)
     const { data: vehicles, error } = await supabase
       .from('vehicles')
       .select('*')
-      .or(`brand.ilike.%${search}%,model.ilike.%${search}%,variant.ilike.%${search}%`)
+      .or(`make.ilike.%${search}%,model.ilike.%${search}%`)
       .limit(limit);
 
     if (error) {

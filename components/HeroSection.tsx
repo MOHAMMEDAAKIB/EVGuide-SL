@@ -12,7 +12,7 @@ export default function HeroSection({
   videoUrl = '/videos/hero-background.mp4' // Default video path
 }: HeroSectionProps) {
   return (
-    <section className="relative bg-linear-to-br from-green-600 to-emerald-600 text-white py-16 md:py-24 overflow-hidden">
+    <section className="relative bg-linear-to-br from-green-600 to-emerald-600 text-white py-24 md:py-32 overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full z-0">
         <video
@@ -59,7 +59,7 @@ export default function HeroSection({
             {/* Primary CTA - Browse EVs */}
             <a 
               href="#vehicles"
-              className="group relative px-10 py-5 bg-white/10 text-white rounded-2xl font-bold text-lg
+              className="group relative px-6 py-3 bg-white/10 text-white rounded-2xl font-bold text-sm
                          overflow-hidden transition-all duration-300 
                          shadow-[0_20px_50px_rgba(34,197,94,0.4)] 
                          hover:shadow-[0_20px_60px_rgba(34,197,94,0.6)]
@@ -88,7 +88,7 @@ export default function HeroSection({
             {/* Secondary CTA - Calculate Savings */}
             <a 
               href="tools/tco-calculator"
-              className="group relative px-10 py-5 rounded-2xl font-bold text-lg text-white
+              className="group relative px-6 py-3 rounded-2xl font-bold text-sm text-white
                          overflow-hidden transition-all duration-300
                          bg-linear-to-r from-green-500/40/10 to-emerald-600/40/10
                          hover:from-green-500/60/10 hover:to-emerald-600/60/10

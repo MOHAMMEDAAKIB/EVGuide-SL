@@ -22,7 +22,7 @@ export default function SortDropdown({ value, onChange }: SortDropdownProps) {
       <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
         Sort
       </label>
-      <select
+      <select  
         value={value}
         onChange={(event) => onChange(event.target.value)}
         className="w-full bg-transparent text-sm font-semibold text-slate-900 outline-none dark:text-white"

@@ -98,6 +98,18 @@ CREATE TABLE IF NOT EXISTS public.fuel_prices (
     updated_at TIMESTAMP WITH TIME ZONE
 );
 
+-- Admin Users Table (for authentication and authorization)
+CREATE TABLE IF NOT EXISTS public.admin_users (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE
+);
+
+-- Index for admin users
+CREATE INDEX idx_admin_users_email ON public.admin_users(email) WHERE is_active = true;
+
 -- Index for fuel prices
 CREATE INDEX idx_fuel_prices_active ON public.fuel_prices(fuel_type, is_active);
 CREATE INDEX idx_fuel_prices_date ON public.fuel_prices(effective_date DESC);
@@ -105,16 +117,130 @@ CREATE INDEX idx_fuel_prices_date ON public.fuel_prices(effective_date DESC);
 -- Enable RLS for fuel prices
 ALTER TABLE public.fuel_prices ENABLE ROW LEVEL SECURITY;
 
+-- Enable RLS for admin users
+ALTER TABLE public.admin_users ENABLE ROW LEVEL SECURITY;
+
 -- Policy: Allow public read access to fuel prices
 CREATE POLICY "Allow public read access to fuel prices"
     ON public.fuel_prices FOR SELECT
     USING (true);
+
+-- Admin Write Policies for Vehicles
+CREATE POLICY "Allow admin insert on vehicles"
+    ON public.vehicles FOR INSERT
+    WITH CHECK (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+CREATE POLICY "Allow admin update on vehicles"
+    ON public.vehicles FOR UPDATE
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+CREATE POLICY "Allow admin delete on vehicles"
+    ON public.vehicles FOR DELETE
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+-- Admin Write Policies for Charging Stations
+CREATE POLICY "Allow admin insert on charging stations"
+    ON public.charging_stations FOR INSERT
+    WITH CHECK (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+CREATE POLICY "Allow admin update on charging stations"
+    ON public.charging_stations FOR UPDATE
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+CREATE POLICY "Allow admin delete on charging stations"
+    ON public.charging_stations FOR DELETE
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+-- Admin Write Policies for Fuel Prices
+CREATE POLICY "Allow admin insert on fuel prices"
+    ON public.fuel_prices FOR INSERT
+    WITH CHECK (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+CREATE POLICY "Allow admin update on fuel prices"
+    ON public.fuel_prices FOR UPDATE
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+CREATE POLICY "Allow admin delete on fuel prices"
+    ON public.fuel_prices FOR DELETE
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
+
+-- Admin Users Policies (Only admins can manage admin users)
+CREATE POLICY "Allow admin read access to admin users"
+    ON public.admin_users FOR SELECT
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.admin_users
+            WHERE email = (SELECT auth.jwt()->>'email')
+            AND is_active = true
+        )
+    );
 
 -- Insert Current Fuel Prices (as of Feb 2026)
 INSERT INTO public.fuel_prices (fuel_type, price_lkr, effective_date, is_active) VALUES
 ('petrol', 350.00, '2026-02-01', true),
 ('diesel', 320.00, '2026-02-01', true);
 
+-- Insert Admin User (Replace with your actual email)
+-- IMPORTANT: Update this email to match your Supabase Auth email
+INSERT INTO public.admin_users (email, is_active) VALUES
+('your-admin-email@example.com', true)
+ON CONFLICT (email) DO NOTHING;
+
 COMMENT ON TABLE public.vehicles IS 'Electric vehicles available in Sri Lanka with localized specifications';
 COMMENT ON TABLE public.charging_stations IS 'EV charging infrastructure across Sri Lanka';
 COMMENT ON TABLE public.fuel_prices IS 'Current fuel prices in Sri Lanka for TCO calculations';
+COMMENT ON TABLE public.admin_users IS 'Super admin users authorized to manage vehicle and charging station data';
