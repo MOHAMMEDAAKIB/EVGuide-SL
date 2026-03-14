@@ -4,7 +4,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 // PATCH - Update vehicle
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createServerSupabaseClient();
@@ -16,7 +16,7 @@ export async function PATCH(
     }
 
     const data = await request.json();
-    const { id } = params;
+    const { id } = await params;
 
     // Update vehicle
     const { data: vehicle, error } = await supabase
@@ -44,7 +44,7 @@ export async function PATCH(
 // DELETE - Delete vehicle
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createServerSupabaseClient();
@@ -55,7 +55,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Delete vehicle
     const { error } = await supabase

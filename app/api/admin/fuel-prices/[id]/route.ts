@@ -4,7 +4,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 // PATCH - Update fuel price
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createServerSupabaseClient();
@@ -15,7 +15,7 @@ export async function PATCH(
     }
 
     const data = await request.json();
-    const { id } = params;
+    const { id } = await params;
 
     // If setting this price as active, deactivate other prices for the same fuel type
     if (data.is_active) {
@@ -52,7 +52,7 @@ export async function PATCH(
 // DELETE - Delete fuel price
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createServerSupabaseClient();
@@ -62,7 +62,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     const { error } = await supabase
       .from('fuel_prices')
