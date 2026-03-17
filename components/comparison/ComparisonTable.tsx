@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, Fragment } from 'react';
 import Image from 'next/image';
 import { Vehicle } from '@/types';
 import { 
@@ -10,7 +10,7 @@ import {
   SpecCategory
 } from '@/lib/utils';
 import ComparisonRow from './ComparisonRow';
-import { GitCompare, X, Car, ChevronDown, ChevronUp, DollarSign, Battery, Rocket, Zap, Ruler } from 'lucide-react';
+import { GitCompare, X, Car, ChevronDown, ChevronUp, DollarSign, Battery, Rocket, Zap, Ruler, WineIcon } from 'lucide-react';
 
 interface ComparisonTableProps {
   vehicles: Vehicle[];
@@ -125,8 +125,7 @@ const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
                 const isCollapsed = collapsedCategories.has(category.name);
                 
                 return (
-                  <tbody key={categoryIndex}>
-                    {/* Category Header */}
+                  <Fragment key={categoryIndex}>
                     <tr className="bg-slate-100/70 dark:bg-slate-800/70 border-y border-slate-200/70 dark:border-slate-700/70">
                       <td
                         colSpan={vehicles.length + 1}
@@ -153,7 +152,7 @@ const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
                     {!isCollapsed && category.specs.map((spec, specIndex) => (
                       <ComparisonRow key={specIndex} spec={spec} />
                     ))}
-                  </tbody>
+                  </Fragment>
                 );
               })}
 
@@ -161,7 +160,7 @@ const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
               <tr className="border-t-2 border-slate-200/70 bg-emerald-50/50 dark:border-slate-700/70 dark:bg-emerald-900/10">
                 <td className="sticky left-0 bg-emerald-50/50 dark:bg-emerald-900/10 px-4 py-4 font-bold text-slate-900 dark:text-white border-r border-slate-200/70 dark:border-slate-700/70 z-10">
                   <div className="flex items-center gap-2">
-                    <span className="text-lg">🏆</span>
+                    <span className="text-lg"><WineIcon/></span>
                     <span className="text-sm">Winner Count</span>
                   </div>
                 </td>
@@ -171,7 +170,7 @@ const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
                     className="px-4 py-4 text-center font-bold text-emerald-700 dark:text-emerald-300"
                   >
                     <div className="flex items-center justify-center gap-2 text-lg">
-                      {count > 0 && <span>🏆</span>}
+                      {count > 0 && <span><WineIcon /></span>}
                       <span>
                         {count}/{totalSpecs}
                       </span>
