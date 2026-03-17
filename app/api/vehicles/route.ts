@@ -4,19 +4,44 @@ import { supabase } from '@/lib/supabase';
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
-    const search = searchParams.get('search') || '';
-    const limit = parseInt(searchParams.get('limit') || '10');
+    const search = (searchParams.get('search') || '').trim();
+    const limitParam = searchParams.get('limit');
+    const limit = limitParam ? parseInt(limitParam, 10) : null;
+    const priceMaxParam = searchParams.get('priceMax');
+    const minRangeParam = searchParams.get('minRange');
 
-    if (!search || search.length < 2) {
+    const priceMax = priceMaxParam ? Number(priceMaxParam) : null;
+    const minRange = minRangeParam ? Number(minRangeParam) : null;
+
+    const hasPriceFilter = Number.isFinite(priceMax) && (priceMax as number) > 0;
+    const hasRangeFilter = Number.isFinite(minRange) && (minRange as number) > 0;
+
+    if (!search && !hasPriceFilter && !hasRangeFilter) {
       return NextResponse.json([]);
     }
 
-    // Search in make and model (matching actual database schema)
-    const { data: vehicles, error } = await supabase
+    let query = supabase
       .from('vehicles')
       .select('*')
-      .or(`make.ilike.%${search}%,model.ilike.%${search}%`)
-      .limit(limit);
+      .order('price_lkr', { ascending: true });
+
+    if (search) {
+      query = query.or(`make.ilike.%${search}%,model.ilike.%${search}%`);
+    }
+
+    if (hasPriceFilter) {
+      query = query.lte('price_lkr', priceMax as number);
+    }
+
+    if (hasRangeFilter) {
+      query = query.gte('range_sl_estimate', minRange as number);
+    }
+
+    if (Number.isFinite(limit) && (limit as number) > 0) {
+      query = query.limit(limit as number);
+    }
+
+    const { data: vehicles, error } = await query;
 
     if (error) {
       console.error('Search error:', error);

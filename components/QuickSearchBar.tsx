@@ -10,16 +10,29 @@ export interface SearchFilters {
 
 interface QuickSearchBarProps {
   onFilterChange: (filters: SearchFilters) => void;
+  minPrice: number;
+  maxPrice: number;
 }
 
-export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) {
+export default function QuickSearchBar({ onFilterChange, minPrice, maxPrice }: QuickSearchBarProps) {
   const storageKey = 'quickSearchOpenV2';
   const [searchTerm, setSearchTerm] = useState('');
-  const [priceRange, setPriceRange] = useState(20000000); 
+  const [priceRange, setPriceRange] = useState(maxPrice);
   const [minRange, setMinRange] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
 
   const minRangeLabel = minRange === 0 ? 'Any range' : `>= ${minRange}km`;
+  const priceStep = Math.max(50_000, Math.round((maxPrice - minPrice) / 40_000) * 10_000);
+
+  useEffect(() => {
+    // Keep slider value valid when data-driven bounds change.
+    setPriceRange((current) => {
+      if (current < minPrice || current > maxPrice) {
+        return maxPrice;
+      }
+      return current;
+    });
+  }, [minPrice, maxPrice]);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(storageKey);
@@ -52,15 +65,15 @@ export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) 
   return (
     <section className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/80 py-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-md dark:border-slate-800/60 dark:bg-slate-900/70">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="rounded-2xl border border-slate-200/70 bg-linear-to-br from-white via-white to-slate-50/70 p-6 ring-1 ring-slate-900/5 shadow-sm dark:border-slate-800/60 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950/40 dark:ring-white/5 md:p-7">
-          <div className="flex items-center justify-between">
+        <div className="rounded-2xl border border-slate-200/70 bg-linear-to-br from-white via-white to-slate-50/70 p-6 ring-1 ring-slate-900/5 shadow-sm dark:border-slate-800/60 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950/40 dark:ring-white/5 md:p-7 ">
+          {/*<div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Refine your search</p>
               <p className="text-xs text-slate-500 dark:text-slate-400">
                 Set budget and range preferences
               </p>
             </div>
-          </div>
+          </div> */}
 
           <div
             id="quick-search-panel"
@@ -68,8 +81,8 @@ export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) 
               isOpen
                 ? 'max-h-160 opacity-100'
                 : 'pointer-events-none max-h-0 opacity-0'
-            }`}
-          >
+              }`}
+            >
             {/* Search Input */}
             <div>
               <label
@@ -104,16 +117,17 @@ export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) 
               <input
                 id="price-range"
                 type="range"
-                min="0"
-                max="20000000"
-                step="500000"
+                min={minPrice}
+                max={maxPrice}
+                step={priceStep}
                 value={priceRange}
                 onChange={(e) => handlePriceChange(Number(e.target.value))}
+                disabled={maxPrice <= minPrice}
                 className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-emerald-500 dark:bg-slate-700"
               />
               <div className="mt-2 flex justify-between text-xs text-slate-500 dark:text-slate-400">
-                <span>Rs. 0</span>
-                <span>Rs. 20M</span>
+                <span>Rs. {(minPrice / 1_000_000).toFixed(1)}M</span>
+                <span>Rs. {(maxPrice / 1_000_000).toFixed(1)}M</span>
               </div>
             </div>
 
@@ -172,7 +186,7 @@ export default function QuickSearchBar({ onFilterChange }: QuickSearchBarProps) 
             </div>
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-0 flex justify-center">
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}

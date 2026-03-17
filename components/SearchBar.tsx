@@ -44,7 +44,7 @@ export default function SearchBar({ onClose }: SearchBarProps) {
     const debounce = setTimeout(async () => {
       try {
         // Search vehicles
-        const response = await fetch(`/api/vehicles?search=${encodeURIComponent(query)}`);
+        const response = await fetch(`/api/vehicles?search=${encodeURIComponent(query)}&limit=10`);
         if (response.ok) {
           const vehicles: Vehicle[] = await response.json();
           const vehicleResults: SearchResult[] = vehicles.slice(0, 5).map((v) => ({
