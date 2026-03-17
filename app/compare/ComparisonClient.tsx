@@ -8,6 +8,7 @@ import ComparisonTable from '@/components/comparison/ComparisonTable';
 import VehicleSelector from '@/components/comparison/VehicleSelector';
 import { exportComparisonToPdf, copyComparisonLink } from '@/lib/exportPdf';
 import { Link2, FileDown, Check } from 'lucide-react';
+import BackButton from '@/components/BackButton';
 
 interface ComparisonClientProps {
   vehicles: Vehicle[];
@@ -93,12 +94,9 @@ export default function ComparisonClient({ vehicles }: ComparisonClientProps) {
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Back Button & Title */}
             <div className="flex items-center gap-4">
-              <Link
-                href="/vehicles"
-                className="flex items-center gap-2 rounded-lg border border-slate-200/70 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:text-emerald-600 dark:border-slate-700/70 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-emerald-400"
-              >
-                ← Back
-              </Link>
+
+              <BackButton href="/vehicles" />
+
               <div>
                 <h1 className="text-xl font-bold text-slate-900 dark:text-white sm:text-2xl">
                   Compare Vehicles ({vehicles.length})

@@ -9,6 +9,7 @@ import CompareBar from '@/components/CompareBar';
 import VehicleCard from '@/components/VehicleCard';
 import { Vehicle } from '@/types';
 import { Search } from 'lucide-react';
+import BackButton from '@/components/BackButton';
 
 interface VehicleBrowseClientProps {
   vehicles: Vehicle[];
@@ -152,12 +153,7 @@ export default function VehicleBrowseClient({
     <main className="min-h-screen bg-white dark:bg-slate-950">
       <section className="relative overflow-hidden border-b border-slate-200/70 bg-linear-to-br from-emerald-50 via-white to-white py-12 dark:border-slate-800/70 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950">
         <div className="max-w-7xl mx-auto px-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/80 px-4 py-2 text-xs font-semibold text-slate-600 shadow-sm shadow-slate-200/60 transition hover:text-slate-900 dark:border-slate-700/70 dark:bg-slate-900/70 dark:text-slate-300"
-          >
-            ← Back
-          </Link>
+          <BackButton href="/" />
           <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
@@ -188,7 +184,7 @@ export default function VehicleBrowseClient({
             onFilterChange={handleFilterChange}
             onClear={handleClearFilters}
           />
-
+          
           <div className="space-y-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="text-sm text-slate-600 dark:text-slate-300">
