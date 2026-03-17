@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "EVGuide SL - Your Complete Sri Lankan EV Guide",
   description: "Discover, compare, and find the perfect electric vehicle for Sri Lanka. Real-world range estimates, TCO calculator, and charging station map.",
+  icons: {
+    icon: "/images/power-supply.png",
+  },
 };
 
 export default function RootLayout({

@@ -46,9 +46,20 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <Link
-                href="/vehicles"
+                href="/"
                 className={`text-sm font-medium transition-colors ${
                   isActive('/vehicles')
+                    ? 'text-green-600 dark:text-green-500'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500'
+                }`}
+              >
+                Home
+              </Link>
+
+              <Link
+                href="/vehicles"
+                className={`text-sm font-medium transition-colors ${
+                  isActive('/compare')
                     ? 'text-green-600 dark:text-green-500'
                     : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500'
                 }`}
@@ -56,20 +67,9 @@ export default function Navbar() {
                 Vehicles
               </Link>
 
-              <Link
-                href="/compare"
-                className={`text-sm font-medium transition-colors ${
-                  isActive('/compare')
-                    ? 'text-green-600 dark:text-green-500'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500'
-                }`}
-              >
-                Compare
-              </Link>
-
               {/* Tools Dropdown */}
               <div className="relative group">
-                <button className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500 transition-colors flex items-center space-x-1">
+                <button className="text-sm font-medium text-gray-700 dark:text-gray-300  hover:text-green-600 dark:hover:text-green-500 transition-colors flex items-center space-x-1">
                   <span>Tools</span>
                   <svg
                     className="w-4 h-4 transition-transform group-hover:rotate-180"
