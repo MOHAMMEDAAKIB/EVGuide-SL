@@ -1,6 +1,6 @@
 export default function CTASection() {
   return (
-    <section className="py-16 bg-linear-to-br from-green-500 to-emerald-600 text-white">
+    <section className="py-16 bg-linear-to-br from-green-600 to-emerald-600 text-white">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Ready to Go Electric?

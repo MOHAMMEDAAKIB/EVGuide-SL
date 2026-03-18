@@ -48,7 +48,7 @@ export default function Navbar() {
               <Link
                 href="/"
                 className={`text-sm font-medium transition-colors ${
-                  isActive('/vehicles')
+                  isActive('/')
                     ? 'text-green-600 dark:text-green-500'
                     : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500'
                 }`}
@@ -58,8 +58,8 @@ export default function Navbar() {
 
               <Link
                 href="/vehicles"
-                className={`text-sm font-medium transition-colors ${
-                  isActive('/compare')
+                className={`text-sm font-medium transition-colors rounded-t-lg flex items-center gap-2 ${
+                  isActive('/vehicles')
                     ? 'text-green-600 dark:text-green-500'
                     : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500'
                 }`}
@@ -83,13 +83,21 @@ export default function Navbar() {
                 <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <Link
                     href="/tools/tco-calculator"
-                    className="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-t-lg flex items-center gap-2"
-                  >
+                    className={`px-4 py-3 text-sm font-medium transition-colors rounded-t-lg flex items-center gap-2 ${
+                      isActive('/tools/tco-calculator')
+                        ? 'text-green-600 dark:text-green-500'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500'
+                    }`}
+                    >
                     <DollarSign className="w-4 h-4" /> TCO Calculator
                   </Link>
                   <Link
                     href="/tools/route-planner"
-                    className="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-b-lg flex items-center gap-2"
+                    className={`px-4 py-3 text-sm font-medium transition-colors rounded-t-lg flex items-center gap-2 ${
+                      isActive('/tools/route-planner')
+                        ? 'text-green-600 dark:text-green-500'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500'
+                    }`}
                   >
                     <Map className="w-4 h-4" /> Route Planner
                   </Link>
